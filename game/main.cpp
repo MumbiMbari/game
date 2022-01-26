@@ -425,3 +425,29 @@ void SpaceshipCreate(int x, int y, bool isPlayer1) {
 	glEnd();
 	glPopMatrix();
 }
+
+void DisplayHealthBar1() {
+	char temp1[40];
+	glColor3f(1, 1, 1);
+	sprintf_s(temp1, "  LIFE = %d", alienLife1);
+	displayRasterText(-1100, 600, 0.4, temp1);
+	glColor3f(1, 0, 0);
+}
+
+void DisplayHealthBar2() {
+	char temp2[40];
+	glColor3f(1, 1, 1);
+	sprintf_s(temp2, "  LIFE = %d", alienLife2);
+	displayRasterText(800, 600, 0.4, temp2);
+	glColor3f(1, 0, 0);
+}
+
+void checkLaserContact(int x, int y, bool dir[], int xp, int yp, bool player1) {
+	int xend = -XMAX, yend = y;
+	xp += 8; yp += 8; // moving circle slightly up to fix laser issue
+	if (dir[0])
+		yend = YMAX;
+	else if (dir[1])
+		yend = -YMAX;
+
+	
